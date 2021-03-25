@@ -11,9 +11,9 @@ npm install --save-dev vue-jest
 yarn add vue-jest --dev
 ```
 
-### Usage with Babel 7
+### Usage with Babel 6
 
-If you use [jest](https://github.com/facebook/jest) > 24.0.0 and [babel-jest](https://github.com/facebook/jest/tree/master/packages/babel-jest) make sure to install babel-core@bridge
+If you want to use Babel 6 or [babel-jest](https://github.com/facebook/jest/tree/master/packages/babel-jest) < 24, make sure to install `babel-core@bridge`.
 
 ```bash
 npm install --save-dev babel-core@bridge
@@ -179,7 +179,8 @@ You can provide [TemplateCompileOptions](https://github.com/vuejs/component-comp
 - **scss** (`lang="scss"`)
 
   - The Sass compiler supports Jest's [moduleNameMapper](https://facebook.github.io/jest/docs/en/configuration.html#modulenamemapper-object-string-string) which is the suggested way of dealing with Webpack aliases. Webpack's `sass-loader` uses a [special syntax](https://github.com/webpack-contrib/sass-loader/blob/v9.0.2/README.md#resolving-import-at-rules) for indicating non-relative imports, so you'll likely need to copy this syntax into your `moduleNameMapper` entries if you make use of it. For aliases of bare imports (imports that require node module resolution), the aliased value must also be prepended with this `~` or `vue-jest`'s custom resolver won't recognize it.
-    ```json
+
+    ```jsonc
     {
       "jest": {
         "moduleNameMapper": {
@@ -192,6 +193,7 @@ You can provide [TemplateCompileOptions](https://github.com/vuejs/component-comp
       }
     }
     ```
+
   - To import globally included files (ie. variables, mixins, etc.), include them in the Jest configuration at `jest.globals['vue-jest'].resources.scss`:
 
     ```json
